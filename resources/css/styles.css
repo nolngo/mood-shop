@@ -5,3 +5,20 @@ body {
     margin: 0;
 }
 
+.page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: bisque;
+}
+.page-header ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+}
+.page-header a{
+    display: block;
+    padding: 0.5em;
+    text-decoration: none;
+}
