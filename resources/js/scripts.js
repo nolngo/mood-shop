@@ -1,9 +1,9 @@
-const itemList = document.getElementById('item-list');
-const cartQty = document.getElementById('cart-qty');
-const cartTotal = document.getElementById('cart-total');
-const addForm = document.getElementById('add-form');
-const itemName = document.getElementById('item-name');
-const itemPrice = document.getElementById('item-price');
+const itemList = document.getElementById("item-list");
+const cartQty = document.getElementById("cart-qty");
+const cartTotal = document.getElementById("cart-total");
+const addForm = document.getElementById("add-form");
+const itemName = document.getElementById("item-name");
+const itemPrice = document.getElementById("item-price");
 
 
 //itemList.innerHTML = '<li> Hello World</li>'
@@ -31,18 +31,18 @@ for (let i=0; i<data.length; ++i) {
 
 
     // create a paragraph element for a description
-    let desc = document.createElement('P');
+    let desc = document.createElement("P");
     // give the paragraph text from the data
     desc.innerText =data[i].desc;
     // append the paragraph to the div
     newDiv.appendChild(desc);
     // do the same thing for price
-    let price = document.createElement('P');
+    let price = document.createElement("P");
     price.innerText = data[i].price;
     newDiv.appendChild(price);
 
 
-    let button = document.createElement('button');
+    let button = document.createElement("button");
     button.id = data[i].name;
 
     button.dataset.price = data[i].price;
@@ -53,17 +53,17 @@ for (let i=0; i<data.length; ++i) {
 }
 
 const all_items_button = Array.from(document.querySelectorAll("button"));
-all_items_button.forEach(elt =>
-    elt.addEventListener('click', () => {
-        addItem(elt.getAttribute('id'), elt.getAttribute('data-price'));
+all_items_button.forEach((elt) =>
+    elt.addEventListener("click", () => {
+        addItem(elt.getAttribute("id"), elt.getAttribute("data-price"));
         showItems();
     })
 );
 
-const cart = []
+const cart = [];
 
 itemList.onchange = function (e) {
-    if (e.target && e.target.classList.contains('update')) {
+    if (e.target && e.target.classList.contains("update")) {
         const name = e.target.dataset.name;
         const qty = parseInt(e.target.value);
         updateCart(name, qty);
@@ -73,13 +73,13 @@ itemList.onchange = function (e) {
 itemList.onclick = function (e) {
     // console.log("Clicked List!")
     // console.log(e.target)
-    if (e.target && e.target.classList.contains('remove')) {
+    if (e.target && e.target.classList.contains("remove")) {
         const name = e.target.dataset.name; // date-name = "???"
         removeItems();
-    } else if (e.target && e.target.classList.contains('add-one')) {
+    } else if (e.target && e.target.classList.contains("add-one")) {
       const name = e.target.dataset.name;
       addItem(name);
-    } else if (e.target && e.target.classList.contains('remove-one')) {
+    } else if (e.target && e.target.classList.contains("remove-one")) {
       const name = e.target.dataset.name;
       removeItem(name, 1);
     }
@@ -109,6 +109,7 @@ function showItems() {
     
     let itemStr = "";
     for (let i = 0; i < cart.length; i += 1) {
+
         itemStr += `<li>
         ${name} $${price} x ${qty} = ${qty * price} 
         <button class="remove" data-name=${name}>Remove</button>
@@ -128,41 +129,41 @@ function showItems() {
 function getQty() {
     let qty = 0;
     for (let i = 0; i < cart.length; i += 1) {
-      qty += cart[i].qty;
+        qty += cart[i].qty;
     }
     return qty;
-  }
+}
 
   // Get Total.
 function getTotal() {
     let total = 0;
     for (let i = 0; i < cart.length; i += 1) {
-      total += cart[i].price * cart[i].qty;
+        total += cart[i].price * cart[i].qty;
     }
     return total.toFixed(2);
 }
 
 function removeItems (name, qty = 0) {
     for (let i = 0; i < cart.length; i += 1) {
-      if (cart[i].name === name) {
-        if (qty > 0) {
-            cart[i].qty -= qty;
-        }
+        if (cart[i].name === name) {
+            if (qty > 0) {
+                cart[i].qty -= qty;
+            }
         if (cart[i].qty < 1 || qty === 0) {
             cart.splice(i, 1);
         }
         showItems();
         return;
-      }
+        }
     }
-  }
+}
 
-  function updateCart(name, qty) {
+function updateCart(name, qty) {
     for (let i = 0; i < cart.length; i += 1) {
-      if (cart[i].name === name) {
-        if (qty < 1) {
-          removeItem(name);
-          return;
+        if (cart[i].name === name) {
+            if (qty < 1) {
+                removeItem(name);
+                return;
         }
         cart[i].qty = qty;
         showItems();
