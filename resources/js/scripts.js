@@ -93,6 +93,7 @@ function addItem(name, price, qty) {
     }
     const item = {name, price, qty: 1};
     cart.push(item);
+    showItems()
 }
 
 function showItems() {
