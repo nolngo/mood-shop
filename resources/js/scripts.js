@@ -1,9 +1,6 @@
 const itemList = document.getElementById("item-list");
 const cartQty = document.getElementById("cart-qty");
 const cartTotal = document.getElementById("cart-total");
-const addForm = document.getElementById("add-form");
-const itemName = document.getElementById("item-name");
-const itemPrice = document.getElementById("item-price");
 
 
 //itemList.innerHTML = '<li> Hello World</li>'
@@ -17,11 +14,11 @@ import data from "./data.js";
 // the length of our data determines how many times this loop goes around
 for (let i=0; i<data.length; ++i) {
     // create a new div element and give it a class name
-    let newDiv = document.createElement('div');
-    newDiv.className = 'item';
+    let newDiv = document.createElement("div");
+    newDiv.className = "item";
 
     // create an image element
-    let img = document.createElement('img');
+    let img = document.createElement("img");
     // this will change each time we go through the loop. Can you explain why?
     img.src = data[i].image;
     img.width = 300;
@@ -84,12 +81,6 @@ itemList.onclick = function (e) {
       removeItem(name, 1);
     }
 };
-addForm.onsubmit = function(e) {
-    e.preventDefault();
-    const name = itemName.value;
-    const price = itemPrice.value;
-    addItem(name, price);
-};
 
 
 function addItem(name, price, qty) {
@@ -109,12 +100,13 @@ function showItems() {
     
     let itemStr = "";
     for (let i = 0; i < cart.length; i += 1) {
+        const {name, price, qty} = cart[i];
 
         itemStr += `<li>
-        ${name} $${price} x ${qty} = ${qty * price} 
-        <button class="remove" data-name=${name}>Remove</button>
-        <button class="add-one" data-name=${name}> + </button>
-        <button class="remove-one" data-name=${name}> - </button>
+        ${cart[i].name} $${price} x ${qty} = ${qty * price} 
+        <button class="remove" data-name=${cart[i].name}>Remove</button>
+        <button class="add-one" data-name=${cart[i].name}> + </button>
+        <button class="remove-one" data-name=${cart[i].name}> - </button>
         <input class="update" type="number" min="0" data-name="${name}>
         </li>`;
         }

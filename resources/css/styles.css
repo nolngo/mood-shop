@@ -33,4 +33,11 @@ body {
     border: solid 1px;
     width: 300px;
     margin-top: 30px;
+    text-align: center;
   }    
+.item button{
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
