@@ -87,6 +87,7 @@ function addItem(name, price, qty) {
     for (let i = 0; i < cart.length; i += 1) {
         if (cart[i].name === name) {
             cart[i].qty += 1;
+            showItems();
             return;
         }
     }
@@ -167,5 +168,3 @@ function updateCart(name, qty) {
 
 //addItem("Apple", 0.99, 3)
 //addItem("Orange", 1.29, 4)
-
-showItems()
