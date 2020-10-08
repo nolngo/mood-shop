@@ -63,7 +63,7 @@ function showItems() {
   }
 
   // Get Quantity.
-  function getQty() {
+function getQty() {
     let qty = 0
     for (let i = 0; i < cart.length; i += 1) {
       qty += cart[i].qty
@@ -72,13 +72,28 @@ function showItems() {
   }
 
   // Get Total.
-  function getTotal() {
+function getTotal() {
     let total = 0
     for (let i = 0; i < cart.length; i += 1) {
       total += cart[i].price * cart[i].qty
     }
     return total.toFixed(2)
 }
+
+function removeItems (name, qty = 0) {
+    for (let i = 0; i < cart.length; i += 1) {
+      if (cart[i].name === name) {
+        if (aty > 0) {
+          cart[i].qty -= qty
+        }
+        if (cart[i].qty < 1 || qty === 0) {
+          cart.splice(i, 1)
+        }
+        return
+      }
+    }
+  }
+
 
 //addItem("Apple", 0.99, 3)
 //addItem("Orange", 1.29, 4)
