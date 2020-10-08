@@ -72,13 +72,13 @@ itemList.onclick = function (e) {
     // console.log(e.target)
     if (e.target && e.target.classList.contains("remove")) {
         const name = e.target.dataset.name; // date-name = "???"
-        removeItems();
+        removeItems(name);
     } else if (e.target && e.target.classList.contains("add-one")) {
       const name = e.target.dataset.name;
       addItem(name);
     } else if (e.target && e.target.classList.contains("remove-one")) {
       const name = e.target.dataset.name;
-      removeItem(name, 1);
+      removeItems(name, 1);
     }
 };
 
@@ -107,7 +107,7 @@ function showItems() {
         <button class="remove" data-name=${cart[i].name}>Remove</button>
         <button class="add-one" data-name=${cart[i].name}> + </button>
         <button class="remove-one" data-name=${cart[i].name}> - </button>
-        <input class="update" type="number" min="0" data-name="${name}>
+        <input class="update" type="number" min="0" data-name="${cart[i].name}">
         </li>`;
         }
 
@@ -154,7 +154,7 @@ function updateCart(name, qty) {
     for (let i = 0; i < cart.length; i += 1) {
         if (cart[i].name === name) {
             if (qty < 1) {
-                removeItem(name);
+                removeItems(name);
                 return;
         }
         cart[i].qty = qty;
